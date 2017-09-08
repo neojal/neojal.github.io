@@ -1,0 +1,5 @@
+# vim lock files
+*.lock
+
+# site
+_site
