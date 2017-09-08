@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+# Topics
+- [Git and GitHub] (topics/github/github.html)
 
-You can use the [editor on GitHub](https://github.com/neojal/neojal.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Others
+- [Jekyll Sintax (Welcome to GitHub Pages)] (welcome-github-pages.html)
 
-### Markdown
+# Run Jekyll on localhost 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+1. Install Ruby, install/update RubyGems, install Bundler:
+`
+$ sudo apt-get install ruby-full
+$ sudo gem update --system
+$ sudo gem install bundler
 
-# Header 1
-## Header 2
-### Header 3
+$ ruby --version
+ruby 2.3.1p112 (2016-04-26) [x86_64-linux-gnu]
+`
+2. Create local repository for your Jekyll site
+`
+$ mkdir neojal.hithub.io
+$ cd neojal.hithub.io
 
-- Bulleted
-- List
+`
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+## References: 
+-[Setting up your pages locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
+-[https://jekyllrb.com/docs/quickstart/](https://jekyllrb.com/docs/quickstart/)
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/neojal/neojal.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
