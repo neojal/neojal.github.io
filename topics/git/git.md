@@ -42,7 +42,7 @@ $ git add .
 $ git checkout edition
 $ git rebase master
 ```
-- Then merge *edition* branch into *master*:
+- Merge *edition* branch into *master*:
 
 ```bash
 $ git checkout master 
