@@ -19,15 +19,51 @@ Pretty straight forward
 First reboot and the touchpad doesn't work, fuck me! right? Just shutdown and power on again the computer
 
 - Configure touchpad.
-- Update system
-```bash
-$ sudo pacman -Syu
-```
+- Update the system, install/enable yaourt, etc: 
+  - [Pacman tips](https://wiki.manjaro.org/index.php?title=Pacman_Tips)
 
 ### Install VIM editor
 
 - Install VIM editor
+~~~bash
+[x@manjaro ~]$ sudo pacman -Syu vim
+~~~
 - Install vimrc, _The Ultimate Vim configuration_: [https://github.com/amix/vimrc](https://github.com/amix/vimrc)
+```bash
+[x@manjaro ~]$ git clone --depth=1 https://github.com/amix/vimrc.git ~/.vim_runtime
+[x@manjaro ~]$ sh ~/.vim_runtime/install_awesome_vimrc.sh
+Installed the Ultimate Vim configuration successfully! Enjoy :-)
+```
+
+### Install Terminator
+```bash
+[x@manjaro ~]$ sudo pacman -Syu terminator 
+```
+
+### Install bash-completion
+```bash
+[x@manjaro ~]$ yaourt bash-completion
+```
+
+
+### Install Chrome
+```bash
+[x@manjaro ~]$ yaourt -S google-chrome 
+```
+### Install Spotify
+```bash
+[x@manjaro ~]$ yaourt -S spotify 
+```
+### Install Java JDK and IntelliJ
+```bash
+[x@manjaro ~]$ yaourt jdk 
+[x@manjaro ~]$ archlinux-java status
+[x@manjaro ~]$ sudo archlinux-java set JAVA-X-JDK
+[x@manjaro ~]$ yaourt -S intellij-idea-ultimate-edition
+```
+
+
+
 
 ### Install NodeJS
 
