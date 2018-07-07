@@ -3,10 +3,11 @@
 ### Agenda
 
 1. Introduction
-2. Spring Data JDBC
-3. Spring Data JPA
-4. Spring Data REST
-5. Conclusion
+2. Requirements
+3. Spring Data JDBC
+4. Spring Data JPA
+5. Spring Data REST
+6. Conclusion
 
 ---
 
@@ -40,6 +41,19 @@ while still retaining the special traits of the underlying data store.
 
 ---
 
+## 2. Requirements
+1. Database setup
+    1. H2 Database Engine
+    2. Create database
+2. Project setup
+    1. Create Maven project
+    2. Add dependencies into the POM.xml
+
+### 
+
+
+---
+
 ## 2. Spring Data JDBC
 
 ### 
@@ -66,4 +80,12 @@ while still retaining the special traits of the underlying data store.
 
 ### References
 - [Spring Data Project](http://projects.spring.io/spring-data/)
-- 
+- [Spring JDBC Example](https://www.journaldev.com/2593/spring-jdbc-example)
+- [H2Database Tutorial](http://www.h2database.com/html/tutorial.html)
+
+
+~~~bash
+
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+~~~
