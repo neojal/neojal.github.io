@@ -5,7 +5,7 @@
 
 ### Others
 - [Git](topics/git/git.html)
-- [Linux post-install tasks](topics/linux/linux-post-install-tasks.md)
+- [Manjaro Linux install notes](topics/linux/manjaro-linux-install-notes.md)
 
 ## GitHub Introduction
 
