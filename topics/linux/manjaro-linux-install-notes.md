@@ -40,15 +40,9 @@ Installed the Ultimate Vim configuration successfully! Enjoy :-)
 [x@manjaro ~]$ sudo pacman -Syu terminator 
 ```
 
-### Install bash-completion
+### Install Chromium
 ```bash
-[x@manjaro ~]$ yaourt bash-completion
-```
-
-
-### Install Chrome
-```bash
-[x@manjaro ~]$ yaourt -S google-chrome 
+[x@manjaro ~]$ sudo pacman -S chromium 
 ```
 ### Install Spotify
 ```bash
@@ -56,36 +50,9 @@ Installed the Ultimate Vim configuration successfully! Enjoy :-)
 ```
 ### Install Java JDK and IntelliJ
 ```bash
-[x@manjaro ~]$ yaourt jdk 
+[x@manjaro ~]$ pacman -Ss jdk11
+[x@manjaro ~]$ sudo pacman -Sy jdk11-openjdk
 [x@manjaro ~]$ archlinux-java status
 [x@manjaro ~]$ sudo archlinux-java set JAVA-X-JDK
 [x@manjaro ~]$ yaourt -S intellij-idea-ultimate-edition
 ```
-
-
-
-
-### Install NodeJS
-
-1. Add the repository, you can specify the required version:
-    ```
-    $ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-    ```
-2. Install:
-
-    ```
-    $ sudo apt-get install nodejs
-    ``` 
-3. Enjoy:
-
-    ```
-    $ node -v
-    v8.7.0
-    $ npm -v
-    5.4.2
-    ```
-### Install Angular CLI
-* Using the npm package manager to install globally the Angular CLI:
-    ```
-    $ sudo npm install -g @angular/cli
-    ```
