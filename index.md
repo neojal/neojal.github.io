@@ -2,6 +2,11 @@
 
 ### Spring 
 - [Interview Questions](topics/spring/spring-interview-questions.md)
+- [Web Services Intro](topics/web-services/web-services-intro.md)
+- [Spring Web Services](topics/web-services/spring-web-services.md)
+
+### Design Patterns
+- [Design Patterns](topics/design-patterns/design-patterns.md)
 
 ### Others
 - [Git](topics/git/git.html)
