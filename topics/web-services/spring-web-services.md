@@ -95,10 +95,60 @@ Date: Tue, 03 Dec 2019 01:33:20 GMT
 
 ## ResponseEntityExceptionHandler abstract class (Spring)
 
-It is possible to create a customized error response structure
+It is possible to create a customized error response structure by extending and
+implementing the methods defined in such class, as well as using @ControllerAdvice
+and @RestController in such class, as follows:
+
+´´´java
+@ControllerAdvice
+@RestController
+public class CustomizedResponseEntityExceptionHandler
+        extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(Exception.class)
+    public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(
+                        new Date(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public final ResponseEntity<Object> handleUserNotFoundExceptions(Exception ex, WebRequest request) {
+
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(
+                        new Date(), ex.getMessage(), request.getDescription(false));
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+
+        ExceptionResponse exceptionResponse =
+                new ExceptionResponse(
+                        new Date(), "Validation Failed.", request.getDescription(false));
+
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+}
+´´´
+
 
 ## @ControllerAdvice
 
-## @Valid (java Validation API)
+## @Valid (java Validation API) and Hibernate Validator implementation
 
-### 
+### Rest Clients
+
+## Spring RestTemplate
+
+* [Spring RestTemplate current](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html)
+* [Spring RestTemplate](https://howtodoinjava.com/spring-boot2/resttemplate/spring-restful-client-resttemplate-example/)
+
+Synchronous client to perform HTTP requests, exposing a simple, template method API over underlying HTTP client libraries such as the JDK HttpURLConnection, Apache HttpComponents, and others.
+
+The RestTemplate offers templates for common scenarios by HTTP method, in addition to the generalized exchange and execute methods that support of less frequent cases.
