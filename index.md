@@ -1,5 +1,9 @@
 ## My Topics
 
+### Java
+
+- [Functional Programming: lambda expressions and stream api](topics/java/functional-programming.md)
+
 ### Spring 
 - [Interview Questions](topics/spring/spring-interview-questions.md)
 - [Web Services Intro](topics/web-services/web-services-intro.md)
