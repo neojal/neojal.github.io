@@ -3,13 +3,26 @@
 ### Java
 
 - [Functional Programming: lambda expressions and stream api](topics/java/functional-programming.md)
+- [Java Stream API]()
 
-### Spring 
-- [Interview Questions](topics/spring/spring-interview-questions.md)
+### Spring
+ 
+- [Spring Core](topics/spring/spring-interview-questions.md)
+- [Spring Data](topics/spring/spring-data.md)
+
+### Web Services
+
 - [Web Services Intro](topics/web-services/web-services-intro.md)
 - [Spring Web Services](topics/web-services/spring-web-services.md)
+- [Swagger/OpenAPI](topics/web-services/swagger.md)
 - [HATEOAS](topics/web-services/hateoas.md)
 - [Other Topics](topics/web-services/other.md)
+
+### Infrastructure
+
+- [AWS](topics/infrastructure/aws.md)
+- [Docker for Java developers](topics/infrastructure/docker-for-java-dev.md)
+- [Kubernetes for Java developers](topics/infrastructure/kubernetes-for-java-dev.md) 
 
 ### Design Patterns
 - [Design Patterns](topics/design-patterns/design-patterns.md)

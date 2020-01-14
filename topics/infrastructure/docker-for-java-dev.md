@@ -150,25 +150,6 @@ Containers in a pod share a context.
     - CrashLoopBackOff
 
 
-    
-## Kubernetes concepts
-
-https://kubernetes.io/docs/concepts/
-
-
-
-
-
-* Kubelet
-
-Primary node agent that runs on each node. The kubelet works in terms of a 
-PodSpec. A PodSpec is a YAML or JSON object that describes a pod.
-
-* CNCF
-
-Cloud Native Computing Foundation
-
-
 
 
 
