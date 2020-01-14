@@ -6,11 +6,12 @@ and avoids changing-state and mutable data.
 Calling a Function with the same arguments always produces the same result.
 
 * __What is a Lambda Expression?__  
-It is a function which can be created without belonging to any class.
+It is a function which can be created without belonging to any class.  
+It is an Anonymous Function: without name and without being bounded to an identifier. 
 
 * __What is a functional interface?__  
-Is an interface with only one abstract method, they can have only one functionality
-to exhibit.  
+It is a SAM Interface (Single Abstract Method Interface). Enforces the rule of Single Responsibility;
+they can be marked with *@FunctionalInterface*.  
 Lambda expressions can be used to represent the instance of a functional interface.
 
 * __Where are Lambda Expressions used?__  
