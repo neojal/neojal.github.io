@@ -1,161 +1,186 @@
-# Learning kubernetes
+# A Start to Finish Guide to Docker with Java
+https://stackify.com/guide-docker-java/
 
-## Introduction
+# Docker for Java developers
 
-### What is a Container (General)?
+https://github.com/arun-gupta/docker-for-java
 
-A collection of software processes unified by one namespace,
-with access to an operating system kernel that shares with other
-containers and little to no access between containers.
+## Running your first container
 
-### Docker Instance
+```shell script
+# start docker daemon 
+$ sudo dockerd  
 
-A runtime of a Docker image contains three things:
+# login to registry, so images can be downloaded
+$ docker login
 
-1. A Docker image.
-2. An Execution environment.
-3. A standard set of instructions
+# run container interactively (downloads it from registry if not present)
+$ docker container run -it jboss/wildfly
 
-### Docker Engine
+# run container in background
+$ docker container run -d jboss/wildfly
 
-Comprised of the runtime and packaging tool; **must** be installed in
-the hosts that run Docker.
+# list active containers
+$ docker container ls
 
-### Difference between VM and a Container:
+# list all containers
+$ docker container ls -a
 
-#### VM:
+# stop container by id or name
+$ docker container stop 
 
-- The entire guest operating system to interact with the apps.
-    
-#### Container:
+# run container setting a name
+$ docker container run --name wildfly -d jboss/wildfly
 
-- Shares the host kernel with other containers.
-- Needs Docker Engine installed on the Host.
-- Run as isolated processes on the host OS.
-- Includes the application and all of its dependencies.
-       
-### Containers benefits for Developers:
+# removes a container even if running
+$ docker container rm -f wildfly
 
-Apps are:  
+# starts container and executes a single command instead of wildfly server.
+$ docker container run --name wildfly -it jboss/wildfly bash
 
-* portable:
-* packaged in a standard way
+# now we are inside the container.
+[jboss@d20566e5550b ~]$ pwd
+/opt/jboss
 
-Deployment is:
+# exit and finish container.
+[jboss@d20566e5550b ~]$ exit
+$
+```
 
-* Easy
-* Repeatable
-* Automated testing, packaging, and integrations
-* Support new microservice architectures
-* Alleviate platform compatibility issues
+## Ports
 
-### Benefits for DevOps:
+```shell script
+# -P runs the container and redirects traffic to a random port
+$ docker container run --name wildfly -P -d jboss/wildfly
 
-* Reliable deployments: improve speed and frequency of releases.
-* Consistent application lifecycle: configure once and run multiple times.
-* Improves communication between developers and devops.
+# see the port
+$ docker container ls
 
-## Kubernetes (K8s)
+ONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS                     NAMES
+9adb133f5324        jboss/wildfly       "/opt/jboss/wildfly/…"   About a minute ago   Up About a minute   0.0.0.0:32769->8080/tcp   wildfly
 
-Definition: An open-source platform designed to automate deploying, scaling, 
-and operating application containers.
+# see wildfly container logs
+$ docker container logs wildfly
+```
+Open in web browser: http://localhost:32769/
 
-Goal: to foster an ecosystem of components and tools that relieve the 
-burden of running applications in public and private clouds.
-
-Kubernetes is a platform to schedule and run containers on:
-
-- clusters of VM
-- bare metal
-- private data center
-- public cloud
-
-### Container orchestration
-
-- Provision hosts
-- Instantiate containers on a host
-- Restart failing containers
-- Expose containers as services outside the cluster
-- Scale the cluster up and down
-
-## Kubernetes Features
-
-* Multi-Host Container Scheduling
-
-    - Done by the kube-scheduler.
-    - Assigns pods ton nodes at runtime
-    - Checks resources, quality of service
-    
-* Scalability and Availability
-    
-    - Multi region deployments available.
-
-* Persistent Storage
-
-## Kubernetes Cluster Architecture
-
-[Components](https://kubernetes.io/docs/concepts/overview/components/)
-
-* Master node:
- - API server
- - Scheduler
- - Controlller Manager
  
-* etcd
- - configuration/schedules storage
-  
-* kubectl
- - kubeconfig
-  
-* Work node
- - kubelet
- - kube proxy
- - docker
-  - pod
-   - container(s)
+```shell script
+# -p 8080:8080 we specify the redirection ports
+$  docker container run --name wildfly -p 8080:8080 -d jboss/wildfly
+```
+Open in web browser: http://localhost:32769/
+
+## Volume Mapping 
+
+Mapping/mounting a local directory into a container.
+
+```shell script
+# remove the existent wildfly container.
+
+# volume mapping with -v option
+$ docker container run -d --name web -p 8080:8080 -v `pwd`/webapp.war:/opt/jboss/wildfly/standalone/deployments/webapp.war jboss/wildfly
+ ```
+
+Now the webapp is running in the container:
+http://localhost:8080/webapp/resources/persons
+
+## Create your first Docker Image (Dockerfile)
+
+Create an empty directory, then create a Dockerfile.
+
+```shell script
+$ vim Dockerfile
+```
+
+```dockerfile
+FROM ubuntu
  
-## Nodes and Pods 
+CMD echo "Hello world!"
+```
 
-### Nodes
+```shell script
+$ docker image --help
 
-A node is a worker machine in K8s, previously known as minion. 
-A node may be a VM or physical machine, depending on the cluster. 
+# build the image, tag helloworld, . this context
+$ docker image build -t helloworld .
 
-* Node Requirements:
-    - a Kubelet running
-    - container tooling like Docker
-    - a kube-proxy process running
-    - supervisord
+# history
+$ docker history helloworld
 
-In prod, it's recommended to have at least a 3 node cluster.    
+# run helloworld container
+$ docker container run helloworld
 
-### Pod
+```
 
-Pods are the smallest deployable units of computing that can be created 
-and managed in Kubernetes.
+If the directory ins't empty, then its contents will be sent to the container. 
 
-A pod is a group of one or more containers with shared storage/network 
-and a specification for how to run the containers. 
+## Create your first Java Docker Image (Dockerfile)
 
-The containers in a pod share the same IP address and port space, 
-and can communicate between them with localhost.
+Explore DockerHub: https://hub.docker.com/_/openjdk
 
-Containers in a pod share a context.
+In a new directory, then create a Dockerfile:
 
-* Pod lifecycle:
-    - Pending
-    - Running
-    - Succeeded
-    - Failed
-    - CrashLoopBackOff
+```dockerfile
+FROM openjdk
+CMD java -version
+```
 
+Then build (setting a tag name) and run the image:
 
+```shell script
+$ docker image build -t hellojava .
 
+$ docker image ls
 
+$ docker container run hellojava
+penjdk version "13.0.1" 2019-10-15
+OpenJDK Runtime Environment (build 13.0.1+9)
+OpenJDK 64-Bit Server VM (build 13.0.1+9, mixed mode, sharing)
 
+```
 
+Using alpine image which is smaller:
 
+```dockerfile
+FROM openjdk:jdk-alpine
+CMD java -version
+```
 
+```shell script
+$ docker image build -t hello-jdk-alpine .
 
-     
-        
+$ docker image ls
+
+$ docker container run hello-jdk-alpine
+openjdk version "1.8.0_171"
+OpenJDK Runtime Environment (IcedTea 3.8.0) (Alpine 8.171.11-r0)
+OpenJDK 64-Bit Server VM (build 25.171-b11, mixed mode)
+
+```
+
+## Docker Machine
+
+We're using: https://hub.docker.com/r/jboss/wildfly, here is a description of how to run this image.
+
+Some new Dockerfile commands:
+
+* COPY: copy new files or directories to container filesystem.
+* ADD: copies then allows file auto-extraction in the image:
+    * ADD app.tar.gz /opt/var/myapp
+    * Can download files from URL, but recommended curl of wget.
+    
+```dockerfile
+FROM jboss/wildfly
+
+COPY ../webapp.war /opt/jboss/wildfly/standalone/deployments/webapp.war
+```
+
+```shell script
+$ docker run -p 8080:8080 -d helloweb
+```
+
+Then go to: http://localhost:8080/webapp/resources/persons
+    
+## Docker and Maven
+

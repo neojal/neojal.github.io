@@ -3,7 +3,8 @@
 ### Java
 
 - [Functional Programming: lambda expressions and stream api](topics/java/functional-programming.md)
-- [Java Stream API]()
+- [Java Collections](topics/java/collections.md)
+- [Java Stream API](topics/java/stream-api.md)
 
 ### Spring
  
@@ -21,11 +22,17 @@
 ### Infrastructure
 
 - [AWS](topics/infrastructure/aws.md)
+- [Docker & Kubernetes](topics/infrastructure/docker-kubernetes.md)
 - [Docker for Java developers](topics/infrastructure/docker-for-java-dev.md)
 - [Kubernetes for Java developers](topics/infrastructure/kubernetes-for-java-dev.md) 
+- [DevOps](topics/infrastructure/devops.md)
 
 ### Design Patterns
 - [Design Patterns](topics/design-patterns/design-patterns.md)
+
+### Testing
+- [Junit & Mockito](topics/testing-mocking/junit-mockito.md)
+- [TDD](topics/testing-mocking/tdd.md)
 
 ### Others
 - [Git](topics/git/git.html)
