@@ -31,7 +31,7 @@ https://www.aquasec.com/wiki/display/containers/Docker+Architecture
 
 * Build image from Dockerfile, then basic run, and then run with some options:
 
-```shell script
+```shell
 $ docker image build
 
 $ docker container run <image name>
@@ -46,7 +46,7 @@ $ docker container run <-d detached or background> <-it interactive> -p <port:po
     * Production stage (FROM openjdk): in production only jdk is required, not maven or anything else.
     
     
-```dockerfile
+```Dockerfile
 FROM maven:3.5-jdk-8 as BUILD
 
 ADD repository.tar.gz /usr/share/maven/ref/
@@ -80,7 +80,7 @@ https://github.com/GoogleContainerTools/jib
 
 * In application's pom.xml, there is a jib profile
 
-```shell script
+```shell
 [neojal@manjaro app]$ mvn package -Pjib
 ```
 
@@ -102,21 +102,21 @@ https://github.com/GoogleContainerTools/jib
 * Creating a maven repository with all the dependencies of *restful-web-services* 
 project, then package the repository directory:
 
-```commandline
+```shell
 [neojal@manjaro restful-web-services]$ mvn -Dmaven.repo.local=./repository clean package
 
 $ tar -cf repository.tar.gz ./repository
 ```
 
-```commandline
+```shell
 ```
 
 
-```commandline
+```shell
 ```
 
 
-```commandline
+```shell
 ```
 
 
