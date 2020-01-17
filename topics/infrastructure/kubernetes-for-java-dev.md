@@ -201,31 +201,18 @@ $ minikube version
 CURRENT   NAME       CLUSTER    AUTHINFO   NAMESPACE
 *         minikube   minikube   minikube
 
- 
+# Move to project directory, then kubernetes manifest files:
+[neojal@manjaro standalone]$ kubectl create -f greeting-deployment.yaml 
+deployment.apps/greeting created
 
+[neojal@manjaro standalone]$ kubectl create -f greeting-service.yaml 
+service/greeting created
 
+[neojal@manjaro standalone]$ kubectl get svc
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+greeting     LoadBalancer   10.96.154.63   <pending>     8080:30405/TCP   37s
+kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP          21m
+
+#... external ip <pending>... wtf!
 
 ```
-
-
-
-****:
-
-****:
-
-****:
-
-****:
-
- 
-
-* Kubelet
-
-Primary node agent that runs on each node. The kubelet works in terms of a 
-PodSpec. A PodSpec is a YAML or JSON object that describes a pod.
-
-* CNCF
-
-Cloud Native Computing Foundation
-
-
