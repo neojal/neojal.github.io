@@ -12,6 +12,10 @@ https://www.aquasec.com/wiki/display/containers/Docker+Architecture
 4. Create K8s cluster
 5. Deploy Kubernetes resources
 
+---
+
+# Part 1 - Docker 
+
 ## Docker Workflow
 
 * Registry: is a stateless server-side which stores docker images.
@@ -90,47 +94,130 @@ https://github.com/GoogleContainerTools/jib
     - jlink
     - jdeps
 
+---
 
+# Part 2 - Kubernetes
 
+Can run in:
 
-## Preconditions
+* desktop
+* on-premises
+* cloud
 
-* There is a Rest Spring Boot project: restful-web-services.
-
-## Building a Docker Image from Java project 
-
-* Creating a maven repository with all the dependencies of *restful-web-services* 
-project, then package the repository directory:
-
-```shell
-[neojal@manjaro restful-web-services]$ mvn -Dmaven.repo.local=./repository clean package
-
-$ tar -cf repository.tar.gz ./repository
-```
-
-```shell
-```
-
-
-```shell
-```
-
-
-```shell
-```
-
-
-```commandline
-```
-
-    
-## Kubernetes concepts
+## Kubernetes basic concepts
 
 https://kubernetes.io/docs/concepts/
 
+**Container Orchestration**: automated deployment, scaling, and management of containerized applications.
+
+**Kubernetes**: is an open source project for container orchestration.
+
+**Kubernetes API objects**: used to work with K8s to describe your clusters desired state:
+
+* what applications or workloads you want to run.
+* what container images they use.
+* the number of replicas
+* what network and disk resources you want to make available
+* etc
+
+**kubectl**: cli interface to interact with K8s API, which is also available for direct interaction.
+
+**Pod**: basic building block of k8s, smallest deployable unit.
+    * represents processes running on your cluster.
+    * encapsulates an application's container (or multiple), storage resources, a unique IP, and options of how
+    the container(s) should run.
+    * One-container-per-pod is most common.
+    * k8s manages the pod, rather than the containers.
+
+**Replication**: Each Pod is meant to run a single instance of a given application. 
+If you want to scale your application horizontally (e.g., run multiple instances), 
+you should use multiple Pods, one for each instance. 
+
+**Pod Templates**: Pod templates are pod specifications which are included in other objects, 
+such as Replication Controllers, Jobs, and DaemonSets. Controllers use Pod Templates to make actual pods.
+
+Pod manifest:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+spec:
+  containers:
+  - name: myapp-container
+    image: busybox
+    command: ['sh', '-c', 'echo Hello Kubernetes! && sleep 3600']
+```
+
+## Kubernetes resources
+
+**Deployment**: You describe a desired state in a Deployment, and the Deployment Controller changes
+ the actual state to the desired state at a controlled rate. 
+
+**Service**: defines a logical set of Pods as a network service.
+
+## Kubernetes cluster concepts
+
+[Kubernetes Components](https://kubernetes.io/docs/concepts/overview/components/)
+
+![Kubernetes Components](https://d33wubrfki0l68.cloudfront.net/7016517375d10c702489167e704dcb99e570df85/7bb53/images/docs/components-of-kubernetes.png)
+
+## Running Kubernetes in Desktop
+
+Install:
+* Kubectl
+* KVM/libvirtd (Kernel Virtual Machine)
+* Minikube
+
+[Minikube-KVM](https://minikube.sigs.k8s.io/docs/reference/drivers/kvm2/)
+[KVM install on Arch](https://computingforgeeks.com/complete-installation-of-kvmqemu-and-virt-manager-on-arch-linux-and-manjaro/)
+
+After installing KVM/libvirtd, minikube can create VMs using KVM!  
+
+
+```shell
+$ kubectl version
+$ minikube version
+
+[neojal@manjaro ~]$ sudo systemctl enable libvirtd.service
+[neojal@manjaro ~]$ sudo systemctl start libvirtd.service
+[neojal@manjaro ~]$ minikube start
+😄  minikube v1.6.2 on Arch 18.1.5
+✨  Automatically selected the 'kvm2' driver (alternates: [none])
+🔥  Creating kvm2 VM (CPUs=2, Memory=2000MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.17.0 on Docker '19.03.5' ...
+💾  Downloading kubelet v1.17.0
+💾  Downloading kubeadm v1.17.0
+🚜  Pulling images ...
+🚀  Launching Kubernetes ... 
+⌛  Waiting for cluster to come online ...
+🏄  Done! kubectl is now configured to use "minikube"
+⚠️  /usr/bin/kubectl is version 0.0.0-master+70132b0f13, and is incompatible with Kubernetes 1.17.0. You will need to update /usr/bin/kubectl or use 'minikube kubectl' to connect with this cluster
+
+[neojal@manjaro ~]$ kubectl config get-contexts 
+CURRENT   NAME       CLUSTER    AUTHINFO   NAMESPACE
+*         minikube   minikube   minikube
+
+ 
 
 
 
+```
+
+
+
+****:
+
+****:
+
+****:
+
+****:
+
+ 
 
 * Kubelet
 
