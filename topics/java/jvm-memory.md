@@ -1,5 +1,9 @@
 # JVM and Memory
 
+[jenkovjava-memory-model](http://tutorials.jenkov.com/java-concurrency/java-memory-model.html)
+
+---
+
 ##### Heap, Metaspace, Stack
 
 ![Java Memory Model](https://media-exp1.licdn.com/dms/image/C5112AQEzQodSXF2YTg/article-cover_image-shrink_720_1280/0?e=1585785600&v=beta&t=8nx_lwGzG_9CS2s0Tom8oDaWAjdvDcjFo9xrwfQOPtc)
