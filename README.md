@@ -7,10 +7,9 @@ https://neojal.github.io
 
 ## ToDo
 
-* Java Collections/Stream API (T)
-* Java Core (W)
-* Spring (Th)
-* Code! (F)
+
+
+
 
 
 
