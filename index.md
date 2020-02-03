@@ -10,6 +10,7 @@
 
 ### Advanced
 
+- [Generics](topics/java/generics.md)
 - [Threads](topics/java/threads.md)  
 
 ### Functional Programming  
