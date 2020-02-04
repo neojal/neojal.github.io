@@ -1,6 +1,6 @@
 # Generics
 
-[Jenkov Generics](http://tutorials.jenkov.com/java-generics/index.html)
+[Jenkov Generics](http://tutorials.jenkov.com/java-generics/index.html)  
 [baeldung generics interview questions](https://www.baeldung.com/java-generics-interview-questions)
 
 * __Generics__ add a way to specify concrete types to general purpose classes and

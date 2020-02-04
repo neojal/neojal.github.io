@@ -2,16 +2,24 @@
 
 ## Java
 
+- [Java 8 Interview Questions](topics/java/java8.md)
+
 ### Core
 
 - [Strings](topics/java/strings.md)
 - [Collections](topics/java/collections.md)
+- [Interfaces and Abstract Classes](topics/java/interfaces-and-abstract-classes.md)
+
+- [Exception Handling](topics/java/exceptions.md)
 - [JVM and Memory](topics/java/jvm-memory.md)
+
 
 ### Advanced
 
+
 - [Generics](topics/java/generics.md)
 - [Threads](topics/java/threads.md)  
+- [Reflection](topics/java/reflection.md)
 
 ### Functional Programming  
 
