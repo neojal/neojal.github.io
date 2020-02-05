@@ -5,6 +5,9 @@
 * https://www.tutorialspoint.com/junit/junit_suite_test.htm
 * https://www.tutorialspoint.com/junit/junit_questions_answers.htm
 
+* https://www.toptal.com/java/unit-integration-junit-tests
+* https://dzone.com/articles/unit-and-integration-tests-in-spring-boot-2
+
 * [Mockito FAQ](https://github.com/mockito/mockito/wiki/FAQ)
 
 ## Some JUnit questions

@@ -13,13 +13,12 @@
 - [Exception Handling](topics/java/exceptions.md)
 - [JVM and Memory](topics/java/jvm-memory.md)
 
-
 ### Advanced
 
-
 - [Generics](topics/java/generics.md)
-- [Threads](topics/java/threads.md)  
 - [Reflection](topics/java/reflection.md)
+- [Threads](topics/java/concurrency.md)
+- [Concurrent API](topics/java/java-util-concurrent.md)
 
 ### Functional Programming  
 
