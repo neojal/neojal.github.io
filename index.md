@@ -16,7 +16,7 @@
 
 ### Advanced
 
-
+- [Java Collections](topics/java/collections.md)
 - [Generics](topics/java/generics.md)
 - [Threads](topics/java/threads.md)  
 - [Reflection](topics/java/reflection.md)
@@ -24,7 +24,6 @@
 ### Functional Programming  
 
 - [Functional Programming: lambda expressions and stream api](topics/java/functional-programming.md)
-- [Java Collections](topics/java/collections.md)
 - [Java Stream API](topics/java/stream-api.md)
 
 ## Spring
@@ -39,6 +38,11 @@
 - [Swagger/OpenAPI](topics/web-services/swagger.md)
 - [HATEOAS](topics/web-services/hateoas.md)
 - [Other Topics](topics/web-services/other.md)
+
+## Microservices
+
+- [Microservices Introduction](topics/microservices/introduction.md)
+
 
 ## Infrastructure
 
