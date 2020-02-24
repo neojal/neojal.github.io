@@ -13,17 +13,17 @@
 - [Exception Handling](topics/java/exceptions.md)
 - [JVM and Memory](topics/java/jvm-memory.md)
 
+
 ### Advanced
 
+- [Java Collections](topics/java/collections.md)
 - [Generics](topics/java/generics.md)
+- [Threads](topics/java/threads.md)  
 - [Reflection](topics/java/reflection.md)
-- [Threads](topics/java/concurrency.md)
-- [Concurrent API](topics/java/java-util-concurrent.md)
 
 ### Functional Programming  
 
 - [Functional Programming: lambda expressions and stream api](topics/java/functional-programming.md)
-- [Java Collections](topics/java/collections.md)
 - [Java Stream API](topics/java/stream-api.md)
 
 ## Spring
@@ -39,6 +39,13 @@
 - [HATEOAS](topics/web-services/hateoas.md)
 - [Other Topics](topics/web-services/other.md)
 
+## Microservices
+
+- [Microservices Introduction](topics/microservices/introduction.md)
+- [Spring Cloud](topics/microservices/spring-cloud.md)
+- [Patterns](topics/microservices/patterns.md)
+
+
 ## Infrastructure
 
 - [AWS](topics/infrastructure/aws.md)
@@ -49,6 +56,7 @@
 
 ## Design Patterns
 - [Design Patterns](topics/design-patterns/design-patterns.md)
+- [Design Patterns in Spring](topics/design-patterns/design-patterns-spring.md)
 
 ## Testing
 - [Junit & Mockito](topics/testing-mocking/junit-mockito.md)

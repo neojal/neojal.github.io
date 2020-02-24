@@ -26,7 +26,7 @@ There is no way to do it. So you must change the method signature.
 No, all junit tests must have a _void_ return type; otherwise, the method
 is not considered a test.
 
-* Whas is a Test Suit?  
+* What is is a Test Suit?  
 It is used to bundle a few unit test cases and run the together. @RunWith and @Suite.
 
 * What are the most important JUnit annotations?
@@ -39,7 +39,7 @@ Allows a developer to run the same test over and over again using different valu
 
 * What is Mocking and Mockito?  
 Mockito is a mocking framework for Java. Mockito allows convenient creation of substitutes
-of real obects for testing purposes.
+of real objects for testing purposes.
 
 * What is a Mock Object?  
 Replaces a mocked class entirely, returning recorded or default values.
