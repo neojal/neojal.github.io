@@ -42,6 +42,7 @@
 ## Microservices
 
 - [Microservices Introduction](topics/microservices/introduction.md)
+- [Spring Cloud](topics/microservices/spring-cloud.md)
 
 
 ## Infrastructure
@@ -54,6 +55,7 @@
 
 ## Design Patterns
 - [Design Patterns](topics/design-patterns/design-patterns.md)
+- [Design Patterns in Spring](topics/design-patterns/design-patterns-spring.md)
 
 ## Testing
 - [Junit & Mockito](topics/testing-mocking/junit-mockito.md)

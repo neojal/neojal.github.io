@@ -50,14 +50,9 @@ Ensure that related behaviour is in one place, and that communicate with other b
 
 * The shared Database.
 * Sync vs Async.
-* 
- 
-    
 
 
-
-    
-    
+## Testing, deployment, etc etc. 
       
   
     
