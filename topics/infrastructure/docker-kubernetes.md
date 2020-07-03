@@ -86,19 +86,46 @@ Kubernetes is a platform to schedule and run containers on:
 
 ## Kubernetes Features
 
-* Multi-Host Container Scheduling
+**Multi-Host Container Scheduling**:
 
-    - Done by the kube-scheduler.
-    - Assigns pods ton nodes at runtime
-    - Checks resources, quality of service
+- Done by the _kube-scheduler_
+- Assigns pods to nodes at runtime
+- Checks resources, quality of service and user specifications before scheduling
     
-* Scalability and Availability
-    
-    - Multi region deployments available.
+**Availability**:
 
-* Persistent Storage
+- Kubernetes _master node_ can be deployed in a highly available configuration
+- Multi region deployments available
+
+**Scalability**:
+
+- Registration: seamless working nodes register themselves with master node.
+- Service discovery: automatic detection of services and endpoints via DNS or environment variables
+
+**Persistent Storage**
+
+* Useful and important feature when working with containers
+* Pods can use persistent volumes to store data
+* Data retained across pod restarts and crashes
+
+**Logging and Monitoring**:
+
+* Application monitoring built in
+    * TCP, HTTP, or container execution health check
+* Node health check
+    * Failures monitored by node controller
+* Kubernetes status
+    * can also be monitored via add-ons
+    
+**Secrets management**:
+
+* Sensitive data is first-class citizen
+* Mounted as data volumes or environment variables
+* Specific to namespace
 
 ## Kubernetes Cluster Architecture
+
+![k8s-architecture](/assets/k8s-architecture.png)
 
 [Components](https://kubernetes.io/docs/concepts/overview/components/)
 
