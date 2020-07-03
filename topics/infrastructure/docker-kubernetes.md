@@ -43,11 +43,11 @@ the hosts that run Docker.
 - Run as isolated processes on the host OS.
 - Includes the application and all of its dependencies.
        
-### Containers benefits for Developers:
+### Container benefits for Developers:
 
 Apps are:  
 
-* portable:
+* portable
 * packaged in a standard way
 
 Deployment is:
@@ -65,14 +65,17 @@ Deployment is:
 * Improves communication between developers and devops.
 
 # Learning Kubernetes
+Container orchestrator: manages containers in a host or across your whole infrastructure.
 
 ## K8S introduction
 
-Definition: An open-source platform designed to automate deploying, scaling, 
-and operating application containers.
-
-Goal: to foster an ecosystem of components and tools that relieve the 
-burden of running applications in public and private clouds.
+**Container orchestrator features**:  
+ 
+* Provision hosts
+* Instantiate containers on a host
+* Restart failing containers
+* Expose containers as service outside the cluster
+* Scale the cluster up and down
 
 Kubernetes is a platform to schedule and run containers on:
 
@@ -80,14 +83,6 @@ Kubernetes is a platform to schedule and run containers on:
 - bare metal
 - private data center
 - public cloud
-
-### Container orchestration
-
-- Provision hosts
-- Instantiate containers on a host
-- Restart failing containers
-- Expose containers as services outside the cluster
-- Scale the cluster up and down
 
 ## Kubernetes Features
 
