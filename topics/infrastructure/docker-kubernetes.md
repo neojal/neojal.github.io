@@ -125,7 +125,7 @@ Kubernetes is a platform to schedule and run containers on:
 
 ## Kubernetes Cluster Architecture
 
-![k8s-architecture](/assets/k8s-architecture.png)
+![k8s-architecture](/assets/k8s-architecture.png =500x )
 
 [Components](https://kubernetes.io/docs/concepts/overview/components/)
 
