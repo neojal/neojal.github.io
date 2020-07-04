@@ -124,60 +124,211 @@ Kubernetes is a platform to schedule and run containers on:
 * Specific to namespace
 
 ## Kubernetes Cluster Architecture
+[kubernetes.io - components](https://kubernetes.io/docs/concepts/overview/components/)
 
-![k8s-architecture](/assets/k8s-architecture.png =500)
+![k8s-architecture](/assets/k8s-architecture.png)
 
-[Components](https://kubernetes.io/docs/concepts/overview/components/)
+**Master Node**:
 
-* Master node:
- - API server
- - Scheduler
- - Controlller Manager
+- API server
+- Scheduler
+- Controller Manager
+    - node controller
+    - replication controller
+    - service account
+    - ...
  
-* etcd
- - configuration/schedules storage
+**etcd**:
+
+- key/value store
+- configuration/schedules storage
   
-* kubectl
- - kubeconfig
+**kubectl**:
+
+- _cli_ to interact with the master node
+- kubeconfig (config file)
+    - auth info to access the API server
   
-* Work node
- - kubelet
- - kube proxy
- - docker
-  - pod
-   - container(s)
+**Worker nodes**:
+
+- is where our applications operate
+- **kubelet**: manages communication processes
+- **kube proxy**: network proxy and load balancer
+- **docker**: allows containers execution
+    - **pod**: is the smallest component that can be deployed in kubernetes and is made of one or more containers.
+        - **containers**: are stored in pods
+        - this group of containers share storage, IP address, namespace, etc.
+ 
+Another view of a K8s cluster:
+
+![k8s-cluster-view](/assets/k8s-cluster-view.png) 
  
 ## Nodes and Pods 
 
 ### Nodes
 
-A node is a worker machine in K8s, previously known as minion. 
-A node may be a VM or physical machine, depending on the cluster. 
+* A node is a worker machine in K8s. 
+* A node may be a VM or physical machine, depending on the cluster. 
 
-* Node Requirements:
-    - a Kubelet running
-    - container tooling like Docker
-    - a kube-proxy process running
-    - supervisord
+**Node Requirements**:
+- a Kubelet running
+- container tooling like Docker
+- a kube-proxy process running
+- supervisord (process control system)
 
-In prod, it's recommended to have at least a 3 node cluster.    
+In production, it's recommended to have at least a 3 node cluster.    
 
 ### Pod
 
-Pods are the smallest deployable units of computing that can be created 
-and managed in Kubernetes.
+Pods are the simplest deployable unit of computing that can be created 
+and managed in Kubernetes.  
 
 A pod is a group of one or more containers with shared storage/network 
-and a specification for how to run the containers. 
+and a specification for how to run the containers.   
 
 The containers in a pod share the same IP address and port space, 
-and can communicate between them with localhost.
+and can communicate between them with localhost.  
 
 Containers in a pod share a context.
 
-* Pod lifecycle:
-    - Pending
-    - Running
-    - Succeeded
-    - Failed
-    - CrashLoopBackOff
+**What's in the pod?**
+
+* Your docker application container
+* Storage resources
+* Unique network IP
+* Options that govern how the container(s) should run
+
+**Pods are**:
+
+* Ephemeral, disposable
+* Never self-heal and not restarted by the scheduler itself 
+
+**Pod lifecycle**:
+
+- Pending: Pod accepted by k8s, but no container running yet
+- Running: Pod has been scheduled in a node.
+- Succeeded (status 0): all containers in a pod are in execution.
+- Failed (non 0 status): at least one container has failed.
+- CrashLoopBackOff: kubernetes tries over and over to restart a pod.
+
+## Controllers: Deployments, ReplicaSets, and Services
+
+**Benefits of Controllers**:  
+
+* App reliability
+* Scaling
+* Load balancing  
+
+**Kinds of Controllers**:
+
+* ReplicaSets
+- Deployments
+- DaemonSets
+- Jobs
+- Services
+
+**ReplicaSets**: Ensures that a specified number of replicas 
+for a pod are running at the same time.
+
+**Deployments**: A Deployment controller provides declarative updates
+for pods and ReplicaSets. Use cases:
+
+- Pod management (Running a ReplicaSet)
+- Scaling a ReplicaSet
+- Pause (make changes) and Resume deployments
+- Status, check for health of the pods
+
+**DaemonSets**: ensure that all nodes run a copy of a specific pod.
+As nodes are added or removed from the cluster, a DaemonSet will add 
+or remove the required pods.
+
+**Jobs**: Supervisor process for pods carrying out batch jobs. Run individual
+processes that run once and complete successfully. Run as a cronjob.
+
+**Service**: Allows the communication between one set of deployments with other.
+Use a service to get pods in two deployments to talk to each other.
+
+- Internal: IP is only reachable within the cluster.
+- External: endpoint available through node ip:port (NodePort).
+- Load Balancer: Exposes application to the internet with a load balancer (cloud provider).
+
+## Labels, Selectors, and Namespaces
+These constructs allow us to annotate and organize our apps. Usually used with
+kubectl.
+
+**Labels**: are key/value pairs that are attached to objects like pods,
+services, and deployments. Labels are for users of Kubernetes to identify
+attributes for objects.
+
+``"label":value"``
+
+**Selectors**: Used to select components by _label_ and/or _value_.
+
+- Equality-based selectors: =, !=
+- Set-based selectors: IN, NOTIN, EXIST
+
+**Namespaces**: allows to have multiple virtual clusters in the same physical cluster.
+
+- great for large enterprises
+- allows teams to access resources, with accountability
+- divide cluster resources between users
+- scope for names must be unique in each namespace
+
+- "Default" namespace created when you launch Kubernetes.
+- Objects placed in "default" namespace at start.
+- Newer applications install their resources in a different namespace.
+
+## Kubelet and kube-proxy
+
+### Kubelet
+Is the "Kubernetes node agent" that runs on each node. 
+
+Kubelet roles:
+
+- Communicates with API server to see if pods have been assigned to nodes.
+- Executes pod containers via a container engine
+- Mounts and runs pod volumes and secrets
+- Executes health checks to identify pod/node status
+
+The Kubelet works in terms of **Podspec**:
+
+- YAML file that describes a pod.
+
+The Kubelet takes a set of Podspecs provided by kube-apiserver and
+ensures that containers described in those Podspecs are running and healthy.
+
+Kubelet only manages containers that were created by the API server.
+
+
+
+### kube-proxy: the network proxy
+
+- Works on all nodes
+- Reflects services as defined on each node
+
+There are three modes of kube-proxy:
+
+1. User space mode (the most common)
+2. Iptables mode
+3. Ipvs mode
+
+- kube-proxy watches the API server for the addition and removal of services.
+- connections to the node are then proxied to the corresponding node
+
+
+
+****:
+****:
+****:
+
+
+
+
+
+
+
+
+
+
+
+
