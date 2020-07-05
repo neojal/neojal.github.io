@@ -315,6 +315,25 @@ There are three modes of kube-proxy:
 - kube-proxy watches the API server for the addition and removal of services.
 - connections to the node are then proxied to the corresponding node
 
+## K8s Windows Install
+
+1. Install Docker, then:
+
+```bash
+# docker --version
+```
+
+2. Install kubectl, then:
+
+```bash
+# kubectl version --client
+```
+
+3. Install minikube, then:
+
+```bash
+# minikube start
+```
 
 
 ****:
