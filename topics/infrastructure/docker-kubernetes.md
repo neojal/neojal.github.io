@@ -335,19 +335,41 @@ There are three modes of kube-proxy:
 # minikube start
 ```
 
+4. On Windows: Hyper-V Manager: 
+- Actions -> Virtual Switch Manager
+- New Virtual Network Switch -> Internal -> Create Virtual Switch
+    - name: "minikube"
+    - select: "Internal Network"
+    - click OK.
+    
+5. Still at Windows: Network and Sharing center:  
+- Select the current Internet connection
+    - Properties -> Sharing tab
+    - Check "Allow other network users..."
+    - Select vEthernet (minikube)
+    - Keep checked "Allow other network users to control or..."
+    - click OK
+    
+6. Testing minikube on Windows:
+```cmd
+> minikube start --vm-driver="hyperv" --hyperv-virtual-switch="minikube"
+
+* minikube v1.11.0 on Microsoft Windows 10 Enterprise 10.0.16299 Build 16299
+* Using the hyperv driver based on user configuration
+* Starting control plane node minikube in cluster minikube
+* Creating hyperv VM (CPUs=2, Memory=4000MB, Disk=20000MB) ...
+* Preparing Kubernetes v1.18.3 on Docker 19.03.8 ...
+* Verifying Kubernetes components...
+* Enabled addons: default-storageclass, storage-provisioner
+* Done! kubectl is now configured to use "minikube"
+```
+7. Windows hyperv manages Docker and minikube VM:
+
+![k8s-hyperv](/assets/k8s-win-hyperv)
+
+
 
 ****:
 ****:
 ****:
-
-
-
-
-
-
-
-
-
-
-
 
