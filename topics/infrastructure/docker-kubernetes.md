@@ -84,7 +84,7 @@ Kubernetes is a platform to schedule and run containers on:
 - private data center
 - public cloud
 
-## Kubernetes Features
+### Kubernetes Features
 
 **Multi-Host Container Scheduling**:
 
@@ -123,7 +123,7 @@ Kubernetes is a platform to schedule and run containers on:
 * Mounted as data volumes or environment variables
 * Specific to namespace
 
-## Kubernetes Cluster Architecture
+### Kubernetes Cluster Architecture
 [kubernetes.io - components](https://kubernetes.io/docs/concepts/overview/components/)
 
 ![k8s-architecture](/assets/k8s-architecture.png)
@@ -163,9 +163,9 @@ Another view of a K8s cluster:
 
 ![k8s-cluster-view](/assets/k8s-cluster-view.png) 
  
-## Nodes and Pods 
+### Nodes and Pods 
 
-### Nodes
+#### Nodes
 
 * A node is a worker machine in K8s. 
 * A node may be a VM or physical machine, depending on the cluster. 
@@ -178,7 +178,7 @@ Another view of a K8s cluster:
 
 In production, it's recommended to have at least a 3 node cluster.    
 
-### Pod
+#### Pod
 
 Pods are the simplest deployable unit of computing that can be created 
 and managed in Kubernetes.  
@@ -211,7 +211,7 @@ Containers in a pod share a context.
 - Failed (non 0 status): at least one container has failed.
 - CrashLoopBackOff: kubernetes tries over and over to restart a pod.
 
-## Controllers: Deployments, ReplicaSets, and Services
+### Controllers: Deployments, ReplicaSets, and Services
 
 **Benefits of Controllers**:  
 
@@ -252,7 +252,7 @@ Use a service to get pods in two deployments to talk to each other.
 - External: endpoint available through node ip:port (NodePort).
 - Load Balancer: Exposes application to the internet with a load balancer (cloud provider).
 
-## Labels, Selectors, and Namespaces
+### Labels, Selectors, and Namespaces
 These constructs allow us to annotate and organize our apps. Usually used with
 kubectl.
 
@@ -278,9 +278,9 @@ attributes for objects.
 - Objects placed in "default" namespace at start.
 - Newer applications install their resources in a different namespace.
 
-## Kubelet and kube-proxy
+### Kubelet and kube-proxy
 
-### Kubelet
+#### Kubelet
 Is the "Kubernetes node agent" that runs on each node. 
 
 Kubelet roles:
@@ -301,7 +301,7 @@ Kubelet only manages containers that were created by the API server.
 
 
 
-### kube-proxy: the network proxy
+#### kube-proxy: the network proxy
 
 - Works on all nodes
 - Reflects services as defined on each node
@@ -315,7 +315,11 @@ There are three modes of kube-proxy:
 - kube-proxy watches the API server for the addition and removal of services.
 - connections to the node are then proxied to the corresponding node
 
-## K8s Windows Install
+---
+
+## Kubernetes Hello-World!
+
+### K8s Windows Install
 
 1. Install Docker, then:
 
@@ -353,20 +357,26 @@ There are three modes of kube-proxy:
 6. Testing minikube on Windows:
 ```cmd
 > minikube start --vm-driver="hyperv" --hyperv-virtual-switch="minikube"
-
-* minikube v1.11.0 on Microsoft Windows 10 Enterprise 10.0.16299 Build 16299
-* Using the hyperv driver based on user configuration
-* Starting control plane node minikube in cluster minikube
-* Creating hyperv VM (CPUs=2, Memory=4000MB, Disk=20000MB) ...
-* Preparing Kubernetes v1.18.3 on Docker 19.03.8 ...
-* Verifying Kubernetes components...
-* Enabled addons: default-storageclass, storage-provisioner
+...
 * Done! kubectl is now configured to use "minikube"
+
+> kubectl get nodes
+NAME       STATUS   ROLES    AGE   VERSION
+minikube   Ready    master   19m   v1.18.3
 ```
 7. Windows hyperv manages Docker and minikube VM:
 
-![k8s-hyperv](/assets/k8s-win-hyperv)
+![k8s-hyperv](/assets/k8s-win-hyperv.png)
 
+### Getting up and running: Other options
+
+**Ways to run kubernetes**:  
+1. Minikube
+2. Docker Desktop
+3. Kubernetes in Docker (kind)
+4. Managed Kubernetes services (Amazon EKS, etc)
+
+**Kubernetes exercises**: [github-karthequian-kubernetes](https://github.com/karthequian/kubernetes)
 
 
 ****:
