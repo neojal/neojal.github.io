@@ -319,62 +319,125 @@ There are three modes of kube-proxy:
 
 ## Kubernetes Hello-World!
 
-### K8s Windows Install
+### Running Kubernetes in Windows 10
 
-1. Install Docker, then:
+To run Kubernetes locally in Windows 10, there are four general components required 
+that I have detected:
 
-```bash
-# docker --version
-```
+* **Virtualization technology**:  
+    - WSL2 (Windows10, version 2004, build 19041 or higher). WSL2 uses Hyper-V architecture to enable virtualization.  
+    - Hyper-V (Windows 10 pro)   
+    - Virtual Machines: VirtualBox, VMware, etc.
+   
+* **Container technology**:
+    - [Docker](https://www.docker.com/resources/what-container)
+    - [Docker alternatives](https://containerjournal.com/topics/container-ecosystems/5-container-alternatives-to-docker/)
+    
+* **Kubernetes Client**:
+    - [kubctl](https://kubernetes.io/docs/reference/kubectl/overview/)
+    
+* **Kubernetes Server (cluster)**: 
+    - [Docker-Desktop](https://docs.docker.com/docker-for-windows/kubernetes/)
+    - [Minikube](https://kubernetes.io/docs/setup/learning-environment/minikube/)
+    - [KinD](https://kind.sigs.k8s.io/)
+    - Managed Kubernetes: 
+        - [Amazon EKS](https://aws.amazon.com/eks/) 
+        - [Google GKE](https://cloud.google.com/kubernetes-engine)
 
-2. Install kubectl, then:
+So, as you can see, there are several alternatives to run Kubernetes locally in Windows.
+There are some posts with different component stacks:
 
-```bash
-# kubectl version --client
-```
+* [Docker-Desktop + WSL2 + KinD or Minikube](https://kubernetes.io/blog/2020/05/21/wsl-docker-kubernetes-on-the-windows-desktop/)
+* [Minikube vs Docker-Desktop](https://medium.com/containers-101/local-kubernetes-for-windows-minikube-vs-docker-desktop-25a1c6d3b766)
 
-3. Install minikube, then:
+### Option 1: Hyper-V and Minikube
 
-```bash
-# minikube start
-```
+Windows 10 pro required because Hyper-V system is required.
+
+1. Install Docker-Desktop, then:
+
+    ```bash
+    # docker --version
+    ```
+
+2. Install/Enable kubectl, then:
+
+    ```bash
+    # kubectl version --client
+    ```
+
+3. Install Minikube, then:
+
+    ```bash
+    # minikube start
+    ```
 
 4. On Windows: Hyper-V Manager: 
-- Actions -> Virtual Switch Manager
-- New Virtual Network Switch -> Internal -> Create Virtual Switch
-    - name: "minikube"
-    - select: "Internal Network"
-    - click OK.
+    - Actions -> Virtual Switch Manager
+    - New Virtual Network Switch -> Internal -> Create Virtual Switch
+        - name: "minikube"
+        - select: "Internal Network"
+        - click OK.
     
-5. Still at Windows: Network and Sharing center:  
-- Select the current Internet connection
-    - Properties -> Sharing tab
-    - Check "Allow other network users..."
-    - Select vEthernet (minikube)
-    - Keep checked "Allow other network users to control or..."
-    - click OK
+5. In Windows: Network and Sharing center:  
+    - Select the current Internet connection
+        - Properties -> Sharing tab
+        - Check "Allow other network users..."
+        - Select vEthernet (minikube)
+        - Keep checked "Allow other network users to control or..."
+        - click OK
     
-6. Testing minikube on Windows:
-```cmd
-> minikube start --vm-driver="hyperv" --hyperv-virtual-switch="minikube"
-...
-* Done! kubectl is now configured to use "minikube"
+6. Start Minikube with driver and switch parameters:
 
-> kubectl get nodes
-NAME       STATUS   ROLES    AGE   VERSION
-minikube   Ready    master   19m   v1.18.3
+    ```cmd
+    > minikube start --vm-driver="hyperv" --hyperv-virtual-switch="minikube"
+    ```
+
+7. Done! kubectl can now talk to Minikube cluster.
+
+    ```
+    > kubectl get nodes
+    NAME       STATUS   ROLES    AGE   VERSION
+    minikube   Ready    master   19m   v1.18.3
+    ```
+
+8. Windows Hyper-V manages Docker and Minikube VM:
+
+    ![k8s-hyperv](/assets/k8s-win-hyperv.png)
+
+### Option 2: WSL2 and Docker-Desktop
+
+1. Enable WSL2 in Windows 10.
+2. Install Docker-Desktop.
+    1. Settings -> Resources -> WSL Integration: check Enable and check additional distros.
+    2. Settings -> Kubernetes: check Enable Kubernetes.
+
+Now you can execute `docker` and `kubectl` commands in PowerShell, and
+also in an installed distro only if __additional distro__ was selected
+(such as Ubuntu running in WSL). 
+
+```bash
+$ docker --version
+Docker version 19.03.8, build afacb8b7f0
+
+$ kubectl version
+Client Version: version.Info{Major:"1", Minor:"16+", GitVersion:"v1.16.6-beta.0", GitCommit:"e7f962ba86f4ce7033828210ca3556393c377bcc", GitTreeState:"clean", BuildDate:"2020-01-15T08:26:26Z", GoVersion:"go1.13.5", Compiler:"gc", Platform:"linux/amd64"}
+Server Version: version.Info{Major:"1", Minor:"16+", GitVersion:"v1.16.6-beta.0", GitCommit:"e7f962ba86f4ce7033828210ca3556393c377bcc", GitTreeState:"clean", BuildDate:"2020-01-15T08:18:29Z", GoVersion:"go1.13.5", Compiler:"gc", Platform:"linux/amd64"}
+
+$ kubectl get nodes
+NAME             STATUS   ROLES    AGE   VERSION
+docker-desktop   Ready    master   58m   v1.16.6-beta.0
+
+$ kubectl cluster-info
+Kubernetes master is running at https://kubernetes.docker.internal:6443
+KubeDNS is running at https://kubernetes.docker.internal:6443/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+$ kubectl describe node docker-desktop
+Name:               docker-desktop
+Roles:              master
+Labels:             beta.kubernetes.io/arch=amd64
 ```
-7. Windows hyperv manages Docker and minikube VM:
 
-![k8s-hyperv](/assets/k8s-win-hyperv.png)
-
-### Getting up and running: Other options
-
-**Ways to run kubernetes**:  
-1. Minikube
-2. Docker Desktop
-3. Kubernetes in Docker (kind)
-4. Managed Kubernetes services (Amazon EKS, etc)
 
 **Kubernetes exercises**: [github-karthequian-kubernetes](https://github.com/karthequian/kubernetes)
 
