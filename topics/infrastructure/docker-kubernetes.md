@@ -438,7 +438,6 @@ Roles:              master
 Labels:             beta.kubernetes.io/arch=amd64
 ```
 
-
 **Kubernetes exercises**: [github-karthequian-kubernetes](https://github.com/karthequian/kubernetes)
 
 
