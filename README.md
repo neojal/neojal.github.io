@@ -7,6 +7,10 @@ https://neojal.github.io
 
 ## ToDo
 
+### Testing
+
+Clarify domain testing and functional testing.
+
 ### Java
 
 - JVM, read about different JVM in 2020.
