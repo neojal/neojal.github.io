@@ -60,15 +60,42 @@ root@kubernetes-bootcamp-765bf4c7b4-c5wzl:/# exit
 ### Expose your app publicly 
 https://kubernetes.io/docs/tutorials/kubernetes-basics/expose/expose-intro/
 
-
-
 ```shell script
+$ kubectl get pods
+$ kubectl get services
+$ kubectl expose deployment/kubernetes-bootcamp --type="NodePort" --port 8080
+service/kubernetes-bootcamp exposed
+$ kubectl get services
+$ kubectl describe services/kubernetes-bootcamp
+
+$ kubectl get pods -l run=kubernetes-bootcamp
+$ kubectl get services -l run=kubernetes-bootcamp
+$ kubectl label pod $POD_NAME app=v1
+
+$ kubectl delete service -l run=kubernetes-bootcamp
+$ kubectl get services
 ```
 
-```shell script
-```
+### Running Multiple Instances of Your App
 
 ```shell script
+$ kubectl get rs
+$ kubectl scale deployments/kubernetes-bootcamp --replicas=4
+$ kubectl get deployments
+$ kubectl get pods -o wide
+$ kubectl describe deployments/kubernetes-bootcamp
+
+$ kubectl describe services/kubernetes-bottcamp
+curl $(minikube ip):$NODE_PORT
+$ kubectl scale deployments/kubernetes-bootcamp  --replicas=2
+$ kubectl get pods -o wide
+```
+### Updating Your App
+
+```shell script
+$ kubectl get deployments.apps
+$ kubectl get pods
+
 ```
 
 ```shell script
