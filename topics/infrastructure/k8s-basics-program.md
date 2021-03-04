@@ -95,16 +95,22 @@ $ kubectl get pods -o wide
 ```shell script
 $ kubectl get deployments.apps
 $ kubectl get pods
+```
 
+## 2 - Configuration
+https://kubernetes.io/docs/tutorials/kubernetes-basics/
+https://kubernetes.io/docs/tutorials/configuration/configure-redis-using-configmap/
+
+## 3 - Stateless Applications
+
+
+
+```shell script
 ```
 
 ```shell script
 ```
 
-
-## 2 - Configuration
-
-## 3 - Stateless Applications
 
 ## 4 - Stateful Applications
 
