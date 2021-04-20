@@ -49,6 +49,18 @@ $ git checkout master
 $ git merge edition
 ```
 
+- Preserve our current changes and make rollback:
+
+```bash
+# make new branch to save current code
+$ git branch current-changes
+
+# and reset to needed commit
+$ git reset --hard commit-id
+```
+
+
+
 # Quick references:
 - gitignore:
   - [https://git-scm.com/docs/gitignore](https://git-scm.com/docs/gitignore)
